@@ -32,31 +32,31 @@ _accept_language_re = re.compile(
 
 
 @functools.lru_cache(maxsize=1000)
-def _parse_accept_lang_header(lang_string: str) -> tuple[LangTag]:
+def _parse_accept_lang_header(lang_string: str) -> tuple[LangTag, ...]:
     """
     Parse the lang_string, which is the body of an HTTP Accept-Language
     header, and return a tuple of (lang, q-value), ordered by 'q' values.
 
     Return an empty tuple if there are any format errors in lang_string.
     """
-    result = []
+    result: list[LangTag] = []
     pieces = _accept_language_re.split(lang_string.lower())
     if pieces[-1]:
-        return ()
+        return tuple[LangTag]()
     for i in range(0, len(pieces) - 1, 3):
         first, lang, priority = pieces[i : i + 3]
         if first:
-            return ()
+            return tuple[LangTag]()
         if priority:
             priority = float(priority)
         else:
             priority = 1.0
-        result.append((lang, priority))
+        result.append(LangTag(lang, priority))
     result.sort(key=lambda k: k[1], reverse=True)
     return tuple(result)
 
 
-def parse_accept_lang_header(lang_string: str) -> tuple[LangTag]:
+def parse_accept_lang_header(lang_string: str) -> tuple[LangTag, ...]:
     """
     Parse the value of the Accept-Language header up to a maximum length.
 
