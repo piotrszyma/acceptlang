@@ -20,4 +20,6 @@ python3 -m pip install -r requirements.dev.txt
 
 ```sh
 python3 -m build --wheel
+twine check dist/**
+twine upload dist/
 ```
