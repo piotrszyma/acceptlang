@@ -3,8 +3,9 @@ test:
 
 # Publish package on pypi.
 publish:
-	python3 setup.py sdist bdist_wheel --universal
-	python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+	python3 -m venv venv
+	twine check dist/*
+	twine upload dist/*
 
 # Prepare local development environment.
 localdev:
