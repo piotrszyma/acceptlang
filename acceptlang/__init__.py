@@ -1,6 +1,3 @@
-# Maximum number of characters that will be parsed from the Accept-Language
-# header to prevent possible denial of service or memory exhaustion attacks.
-# About 10x longer than the longest value shown on MDN’s Accept-Language page.
 import functools
 import re
 from typing import NamedTuple
@@ -42,11 +39,11 @@ def _parse_accept_lang_header(lang_string: str) -> tuple[LangTag, ...]:
     result: list[LangTag] = []
     pieces = _accept_language_re.split(lang_string.lower())
     if pieces[-1]:
-        return tuple[LangTag]()
+        return ()
     for i in range(0, len(pieces) - 1, 3):
         first, lang, priority = pieces[i : i + 3]
         if first:
-            return tuple[LangTag]()
+            return ()
         if priority:
             priority = float(priority)
         else:
