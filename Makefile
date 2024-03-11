@@ -1,6 +1,9 @@
 test:
 	python3 -m unittest discover
 
+build-wheel:
+	python3 -m build --wheel
+
 # Publish package on pypi.
 publish:
 	python3 -m venv venv
