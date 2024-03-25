@@ -19,10 +19,10 @@ pip install acceptlang
 ## Usage
 
 ```python
-from acceptlang import parse_accept_lang_header, LangTag
+from acceptlang import parse_accept_lang_header
 
-parsed_languages = parse_accept_lang_header("en-us,en;q=0.5")
-assert parsed_languages == (LangTag(name='en-us', priority=1.0), LangTag(name='en', priority=0.5))
+parsed_languages = parse_accept_lang_header("en-us,en;q=0.5,de;q=0.3")
+assert parsed_languages == (('en-us', 1.0), ('en',0.5), ('de',0.3))
 ```
 
 # Local development
