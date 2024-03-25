@@ -8,7 +8,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="acceptlang",
-    version="0.0.4",
+    version="0.0.5",
     description="A package for parsing Accept-Language tag received from (untrusted) client context.",  # Optional
     long_description=long_description,
     long_description_content_type="text/markdown",
