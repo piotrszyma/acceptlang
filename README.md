@@ -8,6 +8,23 @@ Test cases and code copied from Django source code enhanced with typing.
 Purpose of this code is to be able to use a battle-tested Accept-Language
 parsing logic in Python code without need to install Django package.
 
+## Installation
+
+You can install the package via pip:
+
+```sh
+pip install acceptlang
+```
+
+## Usage
+
+```python
+from acceptlang import parse_accept_lang_header, LangTag
+
+parsed_languages = parse_accept_lang_header("en-us,en;q=0.5")
+assert parsed_languages == (LangTag(name='en-us', priority=1.0), LangTag(name='en', priority=0.5))
+```
+
 # Local development
 
 ```sh
